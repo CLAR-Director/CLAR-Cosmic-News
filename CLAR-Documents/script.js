@@ -1,0 +1,65 @@
+// --- Cosmic News ---
+async function getNews() {
+  try {
+    const response = await fetch('https://api.spaceflightnewsapi.net/v4/articles/?limit=5');
+    const data = await response.json();
+    const newsList = document.getElementById('news-list');
+    data.results.forEach(article => {
+      const div = document.createElement('div');
+      div.className = 'news-card';
+      div.innerHTML = `<h3>${article.title}</h3>
+                       <p>${article.summary}</p>
+                       <a href="${article.url}" target="_blank">Read more</a>`;
+      newsList.appendChild(div);
+    });
+  } catch (err) {
+    console.error("News fetch error:", err);
+  }
+}
+getNews();
+
+// --- Planets & Stars ---
+async function getPlanetData() {
+  try {
+    const response = await fetch('https://api.le-systeme-solaire.net/rest/bodies/');
+    const data = await response.json();
+    const planets = data.bodies.filter(body => body.isPlanet);
+    const container = document.getElementById('planet-list');
+
+    planets.forEach(planet => {
+      const div = document.createElement('div');
+      div.className = 'planet-card';
+      div.innerHTML = `
+        <h3>${planet.englishName}</h3>
+        <p>Mass: ${planet.mass.massValue} x10^${planet.mass.massExponent} kg</p>
+        <p>Radius: ${planet.meanRadius} km</p>
+        <p>Gravity: ${planet.gravity} m/s²</p>
+      `;
+      container.appendChild(div);
+    });
+  } catch (err) {
+    console.error("Planet fetch error:", err);
+  }
+}
+getPlanetData();
+
+// --- Space Missions ---
+async function getMissions() {
+  try {
+    const response = await fetch('https://api.spacexdata.com/v4/launches/past?limit=5');
+    const data = await response.json();
+    const missionsList = document.getElementById('missions-list');
+
+    data.forEach(mission => {
+      const div = document.createElement('div');
+      div.className = 'mission-card';
+      div.innerHTML = `<h3>${mission.name}</h3>
+                       <p>Date: ${new Date(mission.date_utc).toDateString()}</p>
+                       <p>Rocket: ${mission.rocket}</p>`;
+      missionsList.appendChild(div);
+    });
+  } catch (err) {
+    console.error("Missions fetch error:", err);
+  }
+}
+getMissions();
