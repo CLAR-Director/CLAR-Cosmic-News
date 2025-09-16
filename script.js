@@ -9,9 +9,7 @@ async function getNews() {
       const div = document.createElement('div');
       div.className = 'card';
 
-      // Use article image or fallback
       const imgSrc = article.imageUrl || 'https://source.unsplash.com/400x300/?space,galaxy';
-      
       div.innerHTML = `
         <img src="${imgSrc}" onerror="this.src='https://source.unsplash.com/400x300/?space,galaxy'" alt="Cosmic News">
         <h3>${article.title}</h3>
@@ -37,15 +35,13 @@ async function getPlanetData() {
       const div = document.createElement('div');
       div.className = 'card';
 
-      // Planet image from Unsplash or fallback
       const planetImg = `https://source.unsplash.com/400x300/?${planet.englishName},planet,space`;
-
       div.innerHTML = `
         <img src="${planetImg}" onerror="this.src='https://source.unsplash.com/400x300/?space,planet'" alt="${planet.englishName}">
         <h3>${planet.englishName}</h3>
-        <p>Mass: ${planet.mass.massValue} x10^${planet.mass.massExponent} kg</p>
-        <p>Radius: ${planet.meanRadius} km</p>
-        <p>Gravity: ${planet.gravity} m/s²</p>
+        <p>Mass: ${planet.mass?.massValue || 'N/A'} x10^${planet.mass?.massExponent || 'N/A'} kg</p>
+        <p>Radius: ${planet.meanRadius || 'N/A'} km</p>
+        <p>Gravity: ${planet.gravity || 'N/A'} m/s²</p>
       `;
       container.appendChild(div);
     });
@@ -65,9 +61,7 @@ async function getMissions() {
       const div = document.createElement('div');
       div.className = 'card';
 
-      // Rocket image from Unsplash fallback
       const rocketImg = `https://source.unsplash.com/400x300/?rocket,space`;
-
       div.innerHTML = `
         <img src="${rocketImg}" onerror="this.src='https://source.unsplash.com/400x300/?space,rocket'" alt="${mission.name}">
         <h3>${mission.name}</h3>
