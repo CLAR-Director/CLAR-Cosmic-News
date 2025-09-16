@@ -8,8 +8,7 @@ async function getNews() {
     data.results.forEach(article => {
       const div = document.createElement('div');
       div.className = 'card';
-      // Use image from article or fallback space image
-      const imgSrc = article.imageUrl || "https://images.unsplash.com/photo-1470163395405-d2a3a92f4df0?fit=crop&w=800";
+      const imgSrc = article.imageUrl || "https://source.unsplash.com/400x300/?space,galaxy";
       div.innerHTML = `
         <img src="${imgSrc}" alt="Cosmic News">
         <h3>${article.title}</h3>
@@ -34,7 +33,6 @@ async function getPlanetData() {
     planets.forEach(planet => {
       const div = document.createElement('div');
       div.className = 'card';
-      // Fetch image dynamically from Wikipedia or Unsplash API (fallback image)
       const planetImg = `https://source.unsplash.com/400x300/?${planet.englishName},planet,space`;
       div.innerHTML = `
         <img src="${planetImg}" alt="${planet.englishName}">
@@ -60,13 +58,12 @@ async function getMissions() {
     data.forEach(mission => {
       const div = document.createElement('div');
       div.className = 'card';
-      // Dynamic rocket image from Unsplash
       const rocketImg = `https://source.unsplash.com/400x300/?rocket,${mission.name}`;
       div.innerHTML = `
         <img src="${rocketImg}" alt="${mission.name}">
         <h3>${mission.name}</h3>
         <p>Date: ${new Date(mission.date_utc).toDateString()}</p>
-        <p>Rocket: ${mission.rocket}</p>
+        <p>Rocket ID: ${mission.rocket}</p>
       `;
       missionsList.appendChild(div);
     });
