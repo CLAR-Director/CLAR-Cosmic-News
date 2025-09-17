@@ -3,50 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CLAR - Celestial Luminara Authority Of Research & Advancement</title>
-  <meta name="description" content="CLAR – Cosmic news and information web app with planets, stars, and space missions.">
-  
-  <!-- Stylesheet -->
+  <title>Space Explorer App</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Manifest for PWA -->
-  <link rel="manifest" href="manifest.json">
-  <!-- Favicon -->
-  <link rel="icon" href="clar-logo.png">
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <img src="clar-logo.png" alt="CLAR Logo" class="logo">
-      <h1>CLAR</h1>
-      <p class="full-form">Celestial Luminara Authority Of Research & Advancement</p>
-    </div>
-    <nav>
-      <a href="#news">News</a>
-      <a href="#planets">Planets & Stars</a>
-      <a href="#missions">Missions</a>
-    </nav>
-  </header>
+  <h1>🚀 Space Explorer App</h1>
 
-  <main>
-    <section id="news">
-      <h2>Latest Cosmic News</h2>
-      <div id="news-list" class="cards-container"></div>
-    </section>
+  <!-- Search -->
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Search for planets, rockets...">
+  </div>
 
-    <section id="planets">
-      <h2>Planets & Stars</h2>
-      <div id="planet-list" class="cards-container"></div>
-    </section>
-
-    <section id="missions">
-      <h2>Space Missions</h2>
-      <div id="missions-list" class="cards-container"></div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 CLAR - Celestial Luminara Authority Of Research & Advancement</p>
-  </footer>
+  <!-- Grid -->
+  <div class="grid" id="grid"></div>
 
   <script src="script.js"></script>
 </body>
