@@ -1,81 +1,37 @@
-// -------------------- Cosmic News --------------------
-async function getNews() {
-  try {
-    const response = await fetch('https://api.spaceflightnewsapi.net/v4/articles/?limit=5');
-    const data = await response.json();
-    const newsList = document.getElementById('news-list');
+const grid = document.getElementById("grid");
+const search = document.getElementById("search");
 
-    data.results.forEach(article => {
-      const div = document.createElement('div');
-      div.className = 'card';
+// Fetch JSON data
+async function fetchData() {
+  const response = await fetch("data.json");
+  const items = await response.json();
+  renderItems(items);
 
-      const imgSrc = article.imageUrl || 'https://source.unsplash.com/400x300/?space,galaxy';
-      div.innerHTML = `
-        <img src="${imgSrc}" onerror="this.src='https://source.unsplash.com/400x300/?space,galaxy'" alt="Cosmic News">
-        <h3>${article.title}</h3>
-        <p>${article.summary}</p>
-        <a href="${article.url}" target="_blank">Read more</a>
-      `;
-      newsList.appendChild(div);
-    });
-  } catch (err) {
-    console.error("News fetch error:", err);
-  }
+  // Search filter
+  search.addEventListener("input", () => {
+    const value = search.value.toLowerCase();
+    const filtered = items.filter(item =>
+      item.name.toLowerCase().includes(value) ||
+      item.type.toLowerCase().includes(value)
+    );
+    renderItems(filtered);
+  });
 }
 
-// -------------------- Planets & Stars --------------------
-async function getPlanetData() {
-  try {
-    const response = await fetch('https://api.le-systeme-solaire.net/rest/bodies/');
-    const data = await response.json();
-    const planets = data.bodies.filter(body => body.isPlanet);
-    const container = document.getElementById('planet-list');
-
-    planets.forEach(planet => {
-      const div = document.createElement('div');
-      div.className = 'card';
-
-      const planetImg = `https://source.unsplash.com/400x300/?${planet.englishName},planet,space`;
-      div.innerHTML = `
-        <img src="${planetImg}" onerror="this.src='https://source.unsplash.com/400x300/?space,planet'" alt="${planet.englishName}">
-        <h3>${planet.englishName}</h3>
-        <p>Mass: ${planet.mass?.massValue || 'N/A'} x10^${planet.mass?.massExponent || 'N/A'} kg</p>
-        <p>Radius: ${planet.meanRadius || 'N/A'} km</p>
-        <p>Gravity: ${planet.gravity || 'N/A'} m/s²</p>
-      `;
-      container.appendChild(div);
-    });
-  } catch (err) {
-    console.error("Planet fetch error:", err);
-  }
+// Render items
+function renderItems(items) {
+  grid.innerHTML = "";
+  items.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${item.img}" alt="${item.name}">
+      <h2>${item.name}</h2>
+      <p>${item.type}</p>
+    `;
+    grid.appendChild(card);
+  });
 }
 
-// -------------------- Space Missions --------------------
-async function getMissions() {
-  try {
-    const response = await fetch('https://api.spacexdata.com/v4/launches/past?limit=5');
-    const data = await response.json();
-    const missionsList = document.getElementById('missions-list');
-
-    data.forEach(mission => {
-      const div = document.createElement('div');
-      div.className = 'card';
-
-      const rocketImg = `https://source.unsplash.com/400x300/?rocket,space`;
-      div.innerHTML = `
-        <img src="${rocketImg}" onerror="this.src='https://source.unsplash.com/400x300/?space,rocket'" alt="${mission.name}">
-        <h3>${mission.name}</h3>
-        <p>Date: ${new Date(mission.date_utc).toDateString()}</p>
-        <p>Rocket ID: ${mission.rocket}</p>
-      `;
-      missionsList.appendChild(div);
-    });
-  } catch (err) {
-    console.error("Missions fetch error:", err);
-  }
-}
-
-// -------------------- Initialize App --------------------
-getNews();
-getPlanetData();
-getMissions();
+// Initial fetch
+fetchData();
