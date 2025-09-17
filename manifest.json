@@ -1,19 +1,19 @@
 {
-  "name": "CLAR - Celestial Luminara Authority Of Research & Advancement",
+  "name": "CLAR – Celestial Luminara Authority of Research & Advancement",
   "short_name": "CLAR",
-  "description": "CLAR – Cosmic news and information web app with planets, stars, and space missions.",
-  "start_url": "index.html",
+  "start_url": ".",
   "display": "standalone",
-  "background_color": "#0b0b1a",
-  "theme_color": "#0af",
+  "background_color": "#0d1117",
+  "theme_color": "#0d1117",
+  "description": "CLAR is a research platform to explore planets, rockets, telescopes, and the universe in a modern clean UI.",
   "icons": [
     {
-      "src": "clar-logo.png",
+      "src": "icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "clar-logo.png",
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
