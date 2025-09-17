@@ -1,20 +1,20 @@
 // ===== PLANETS DATA =====
 const planets = [
   { name: "Sun", img: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Solar_sys8.jpg", desc: "The star at the center of our solar system." },
-  { name: "Mercury", img: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Mercury_in_true_color.jpg", desc: "The smallest planet, closest to the Sun." },
-  { name: "Venus", img: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Venus-real_color.jpg", desc: "Hot, cloudy planet often called Earth's twin." },
-  { name: "Earth", img: "https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg", desc: "Our home planet, the only known with life." },
-  { name: "Mars", img: "https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg", desc: "The Red Planet, target for exploration." },
-  { name: "Jupiter", img: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg", desc: "The gas giant with a Great Red Spot." },
-  { name: "Saturn", img: "https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg", desc: "Famous for its ring system." },
-  { name: "Uranus", img: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg", desc: "An ice giant with a tilted axis." },
-  { name: "Neptune", img: "https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg", desc: "The farthest planet, strong winds." }
+  { name: "Mercury", img: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Mercury_in_true_color.jpg", desc: "Smallest planet, closest to the Sun." },
+  { name: "Venus", img: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Venus-real_color.jpg", desc: "Earth’s twin with extreme heat." },
+  { name: "Earth", img: "https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg", desc: "Our home planet with life." },
+  { name: "Mars", img: "https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg", desc: "The Red Planet with exploration rovers." },
+  { name: "Jupiter", img: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg", desc: "Gas giant with the Great Red Spot." },
+  { name: "Saturn", img: "https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg", desc: "Known for its stunning rings." },
+  { name: "Uranus", img: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg", desc: "Ice giant with a tilted axis." },
+  { name: "Neptune", img: "https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg", desc: "Farthest planet with supersonic winds." }
 ];
 
 const planetsContainer = document.getElementById("planets-container");
 planets.forEach(p => {
   planetsContainer.innerHTML += `
-    <div class="card searchable" data-type="planet" data-text="${p.name} ${p.desc}">
+    <div class="card searchable" data-text="${p.name} ${p.desc}">
       <img src="${p.img}" alt="${p.name}">
       <h3>${p.name}</h3>
       <p>${p.desc}</p>
@@ -31,7 +31,7 @@ const missions = [
 const missionsContainer = document.getElementById("missions-container");
 missions.forEach(m => {
   missionsContainer.innerHTML += `
-    <div class="card searchable" data-type="mission" data-text="${m.name} ${m.desc} ${m.year}">
+    <div class="card searchable" data-text="${m.name} ${m.desc} ${m.year}">
       <img src="${m.img}" alt="${m.name}">
       <h3>${m.name} (${m.year})</h3>
       <p>${m.desc}</p>
@@ -40,19 +40,23 @@ missions.forEach(m => {
 
 // ===== SPACE NEWS (API) =====
 async function loadNews() {
-  const res = await fetch("https://api.spaceflightnewsapi.net/v4/articles/?limit=8");
-  const data = await res.json();
-  const newsContainer = document.getElementById("news-container");
+  try {
+    const res = await fetch("https://api.spaceflightnewsapi.net/v4/articles/?limit=8");
+    const data = await res.json();
+    const newsContainer = document.getElementById("news-container");
 
-  data.results.forEach(article => {
-    newsContainer.innerHTML += `
-      <div class="card searchable" data-type="news" data-text="${article.title} ${article.summary}">
-        <img src="${article.image_url}" alt="News Image">
-        <h3>${article.title}</h3>
-        <p>${new Date(article.published_at).toLocaleString()}</p>
-        <a href="${article.url}" target="_blank">Read More</a>
-      </div>`;
-  });
+    data.results.forEach(article => {
+      newsContainer.innerHTML += `
+        <div class="card searchable" data-text="${article.title} ${article.summary}">
+          <img src="${article.image_url}" alt="News Image">
+          <h3>${article.title}</h3>
+          <p>${new Date(article.published_at).toLocaleString()}</p>
+          <a href="${article.url}" target="_blank">Read More →</a>
+        </div>`;
+    });
+  } catch (err) {
+    document.getElementById("news-container").innerHTML = "<p>⚠️ Could not load space news.</p>";
+  }
 }
 loadNews();
 
