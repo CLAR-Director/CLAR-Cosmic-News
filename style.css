@@ -1,117 +1,84 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
 body {
+  margin: 0;
+  font-family: Arial, sans-serif;
   display: flex;
-  background: #0d1117;
-  color: #e6edf3;
-  min-height: 100vh;
+  height: 100vh;
+  background: #0b0f1a;
+  color: #fff;
 }
 
-/* Sidebar */
 .sidebar {
-  width: 220px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+  width: 250px;
+  background: #101425;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.logo {
+.sidebar .logo {
   width: 120px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
-#search {
+.sidebar h2 {
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.sidebar input {
   width: 100%;
   padding: 8px;
   margin-bottom: 20px;
+  border-radius: 5px;
   border: none;
-  border-radius: 8px;
 }
 
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
 }
 
-.sidebar nav a {
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  color: #fff;
   text-decoration: none;
-  color: #58a6ff;
-  padding: 6px;
-  border-radius: 6px;
-  transition: background 0.3s;
+  font-weight: bold;
 }
 
-.sidebar nav a:hover {
-  background: rgba(88, 166, 255, 0.2);
-}
-
-/* Main Content */
-.content {
+.main-content {
   flex: 1;
+  overflow-y: auto;
   padding: 20px;
 }
 
-h2 {
-  margin-bottom: 15px;
-  border-bottom: 1px solid #30363d;
-  padding-bottom: 5px;
-}
-
-.grid {
+.planet-grid,
+.mission-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
+  gap: 20px;
 }
 
-/* Cards */
 .card {
-  background: #161b22;
-  padding: 12px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  transition: transform 0.2s;
-}
-
-.card:hover {
-  transform: translateY(-4px);
+  background: #1c2237;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 0px 10px #000;
 }
 
 .card img {
   width: 100%;
-  border-radius: 8px;
-  margin-bottom: 8px;
+  border-radius: 10px;
 }
 
-.card h3 {
-  margin-bottom: 6px;
-  font-size: 1.1em;
-}
-
-.card p {
-  font-size: 0.9em;
-  color: #aaa;
-}
-
-.card a {
-  display: inline-block;
-  margin-top: 6px;
-  color: #58a6ff;
-  text-decoration: none;
-}
-
-footer {
-  text-align: center;
+#newsContainer article {
+  background: #1c2237;
   padding: 15px;
-  font-size: 0.9em;
-  color: #666;
+  margin: 10px 0;
+  border-radius: 10px;
 }
