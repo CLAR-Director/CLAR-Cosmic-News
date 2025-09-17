@@ -1,64 +1,101 @@
+/* Global */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", sans-serif;
   background: #0d1117;
   color: #e6edf3;
-  text-align: center;
+  display: flex;
 }
 
-header {
-  padding: 20px;
+/* Sidebar */
+.sidebar {
+  width: 250px;
   background: #161b22;
-  border-bottom: 1px solid #30363d;
-}
-
-h1 {
-  font-size: 2.5em;
-  margin: 0;
-  color: #58a6ff;
-}
-
-h2 {
-  font-size: 1em;
-  font-weight: normal;
-  margin: 5px 0 15px;
-  color: #8b949e;
-}
-
-#search {
-  width: 70%;
-  padding: 10px;
-  margin: 10px auto;
-  border-radius: 8px;
-  border: none;
-  font-size: 1em;
-}
-
-#news-container {
   padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
-.news-card {
+.logo {
+  width: 60px;
+  display: block;
+  margin: 0 auto;
+}
+
+.logo-section {
+  text-align: center;
+}
+
+.sidebar h1 {
+  margin: 10px 0 0;
+  color: #58a6ff;
+}
+
+.sidebar input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1em;
+  width: 100%;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav ul li {
+  margin: 15px 0;
+}
+
+.sidebar nav ul li a {
+  color: #c9d1d9;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+
+.sidebar nav ul li a:hover {
+  color: #58a6ff;
+}
+
+/* Main content */
+.content {
+  margin-left: 270px;
+  padding: 20px;
+  flex: 1;
+}
+
+h2 {
+  color: #58a6ff;
+  margin-bottom: 15px;
+}
+
+/* Grid layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Cards */
+.card {
   background: #161b22;
   border-radius: 12px;
   padding: 15px;
-  text-align: left;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
   transition: transform 0.2s;
 }
 
-.news-card:hover {
+.card:hover {
   transform: scale(1.03);
 }
 
-.news-card img {
+.card img {
   width: 100%;
   border-radius: 8px;
-}
-
-.news-card h3 {
-  color: #58a6ff;
 }
