@@ -1,20 +1,15 @@
 {
-  "name": "CLAR – Celestial Luminara Authority of Research & Advancement",
+  "name": "CLAR - Celestial Luminara Authority of Research & Advancement",
   "short_name": "CLAR",
-  "start_url": ".",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#0d1117",
-  "theme_color": "#0d1117",
-  "description": "CLAR provides solar system details, historical missions, and live space news.",
+  "background_color": "#0a0f1e",
+  "theme_color": "#11172b",
+  "description": "A hub for planetary info, space missions, and live space news.",
   "icons": [
     {
-      "src": "icons/logo.png",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/9/95/NASA_logo.svg",
       "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
       "type": "image/png"
     }
   ]
