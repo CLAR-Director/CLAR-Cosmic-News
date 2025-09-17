@@ -14,7 +14,7 @@ const planets = [
 const planetsContainer = document.getElementById("planets-container");
 planets.forEach(p => {
   planetsContainer.innerHTML += `
-    <div class="card">
+    <div class="card searchable" data-type="planet" data-text="${p.name} ${p.desc}">
       <img src="${p.img}" alt="${p.name}">
       <h3>${p.name}</h3>
       <p>${p.desc}</p>
@@ -31,7 +31,7 @@ const missions = [
 const missionsContainer = document.getElementById("missions-container");
 missions.forEach(m => {
   missionsContainer.innerHTML += `
-    <div class="card">
+    <div class="card searchable" data-type="mission" data-text="${m.name} ${m.desc} ${m.year}">
       <img src="${m.img}" alt="${m.name}">
       <h3>${m.name} (${m.year})</h3>
       <p>${m.desc}</p>
@@ -40,18 +40,28 @@ missions.forEach(m => {
 
 // ===== SPACE NEWS (API) =====
 async function loadNews() {
-  const res = await fetch("https://api.spaceflightnewsapi.net/v4/articles/?limit=5");
+  const res = await fetch("https://api.spaceflightnewsapi.net/v4/articles/?limit=8");
   const data = await res.json();
   const newsContainer = document.getElementById("news-container");
 
   data.results.forEach(article => {
     newsContainer.innerHTML += `
-      <div class="card">
+      <div class="card searchable" data-type="news" data-text="${article.title} ${article.summary}">
         <img src="${article.image_url}" alt="News Image">
         <h3>${article.title}</h3>
-        <p>${article.published_at}</p>
+        <p>${new Date(article.published_at).toLocaleString()}</p>
         <a href="${article.url}" target="_blank">Read More</a>
       </div>`;
   });
 }
 loadNews();
+
+// ===== SEARCH FUNCTION =====
+const searchInput = document.getElementById("search");
+searchInput.addEventListener("input", () => {
+  const query = searchInput.value.toLowerCase();
+  document.querySelectorAll(".searchable").forEach(card => {
+    const text = card.getAttribute("data-text").toLowerCase();
+    card.style.display = text.includes(query) ? "block" : "none";
+  });
+});
