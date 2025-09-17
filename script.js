@@ -1,21 +1,31 @@
-const apiUrl = "https://api.spaceflightnewsapi.net/v4/articles"; // Free space news API
+const apiUrl = "https://api.spaceflightnewsapi.net/v4/articles";
 
 const newsContainer = document.getElementById("news-container");
 const searchInput = document.getElementById("search");
 
 async function fetchNews() {
   try {
+    console.log("Fetching news from API..."); // Debug
     const res = await fetch(apiUrl);
+    console.log("Response status:", res.status); // Debug
+    
     const data = await res.json();
+    console.log("Data received:", data); // Debug
 
     displayNews(data.results);
   } catch (err) {
+    console.error("Error fetching news:", err);
     newsContainer.innerHTML = "<p>⚠️ Could not load space news.</p>";
   }
 }
 
 function displayNews(articles) {
   newsContainer.innerHTML = "";
+
+  if (!articles || articles.length === 0) {
+    newsContainer.innerHTML = "<p>No space news available right now.</p>";
+    return;
+  }
 
   articles.forEach(article => {
     const card = document.createElement("div");
@@ -32,7 +42,6 @@ function displayNews(articles) {
   });
 }
 
-// Search filter
 searchInput.addEventListener("input", e => {
   const term = e.target.value.toLowerCase();
   const cards = document.querySelectorAll(".news-card");
@@ -43,5 +52,4 @@ searchInput.addEventListener("input", e => {
   });
 });
 
-// Fetch news on load
 fetchNews();
