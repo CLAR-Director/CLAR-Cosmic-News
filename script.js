@@ -1,87 +1,57 @@
-// Solar system data
+// ===== PLANETS DATA =====
 const planets = [
-  { name: "Sun", type: "Star", radius: "695,700 km", info: "The center of our solar system, providing light and heat.", img: "images/sun.jpg" },
-  { name: "Mercury", type: "Planet", radius: "2,439 km", info: "Smallest planet, closest to the Sun.", img: "images/mercury.jpg" },
-  { name: "Venus", type: "Planet", radius: "6,052 km", info: "Hottest planet due to thick CO2 atmosphere.", img: "images/venus.jpg" },
-  { name: "Earth", type: "Planet", radius: "6,371 km", info: "Our home, the only known planet with life.", img: "images/earth.jpg" },
-  { name: "Mars", type: "Planet", radius: "3,390 km", info: "The red planet, explored by many rovers.", img: "images/mars.jpg" },
-  { name: "Jupiter", type: "Planet", radius: "69,911 km", info: "Largest planet with a giant red storm.", img: "images/jupiter.jpg" },
-  { name: "Saturn", type: "Planet", radius: "58,232 km", info: "Famous for its beautiful rings.", img: "images/saturn.jpg" },
-  { name: "Uranus", type: "Planet", radius: "25,362 km", info: "An ice giant that rotates on its side.", img: "images/uranus.jpg" },
-  { name: "Neptune", type: "Planet", radius: "24,622 km", info: "Deep blue ice giant with strong winds.", img: "images/neptune.jpg" }
+  { name: "Sun", img: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Solar_sys8.jpg", desc: "The star at the center of our solar system." },
+  { name: "Mercury", img: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Mercury_in_true_color.jpg", desc: "The smallest planet, closest to the Sun." },
+  { name: "Venus", img: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Venus-real_color.jpg", desc: "Hot, cloudy planet often called Earth's twin." },
+  { name: "Earth", img: "https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg", desc: "Our home planet, the only known with life." },
+  { name: "Mars", img: "https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg", desc: "The Red Planet, target for exploration." },
+  { name: "Jupiter", img: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg", desc: "The gas giant with a Great Red Spot." },
+  { name: "Saturn", img: "https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg", desc: "Famous for its ring system." },
+  { name: "Uranus", img: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg", desc: "An ice giant with a tilted axis." },
+  { name: "Neptune", img: "https://upload.wikimedia.org/wikipedia/commons/5/56/Neptune_Full.jpg", desc: "The farthest planet, strong winds." }
 ];
 
-// Historical missions
-const missions = [
-  { name: "Apollo 11", date: "July 20, 1969", info: "First human landing on the Moon.", img: "images/apollo11.jpg" },
-  { name: "Voyager 1", date: "September 5, 1977", info: "Farthest spacecraft from Earth, still sending data.", img: "images/voyager1.jpg" },
-  { name: "Hubble Telescope", date: "April 24, 1990", info: "Revolutionized astronomy with deep space images.", img: "images/hubble.jpg" },
-  { name: "Mars Rover Perseverance", date: "February 18, 2021", info: "NASA rover exploring Jezero Crater.", img: "images/perseverance.jpg" }
-];
-
-// Space news API
-const apiUrl = "https://api.spaceflightnewsapi.net/v4/articles";
-
-// Insert planets
 const planetsContainer = document.getElementById("planets-container");
 planets.forEach(p => {
-  const card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `
-    <img src="${p.img}" alt="${p.name}">
-    <h3>${p.name}</h3>
-    <p><strong>Type:</strong> ${p.type}</p>
-    <p><strong>Radius:</strong> ${p.radius}</p>
-    <p>${p.info}</p>
-  `;
-  planetsContainer.appendChild(card);
+  planetsContainer.innerHTML += `
+    <div class="card">
+      <img src="${p.img}" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+    </div>`;
 });
 
-// Insert missions
+// ===== MISSIONS DATA =====
+const missions = [
+  { name: "Apollo 11", year: "1969", img: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Apollo_11_insignia.png", desc: "First human Moon landing." },
+  { name: "Voyager 1", year: "1977", img: "https://upload.wikimedia.org/wikipedia/commons/d/df/Voyager_insignia.png", desc: "Exploring interstellar space." },
+  { name: "Curiosity Rover", year: "2011", img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Curiosity_Self-Portrait_at_%27Big_Sky%27_Drilling_Site.jpg", desc: "Mars rover studying the Red Planet." }
+];
+
 const missionsContainer = document.getElementById("missions-container");
 missions.forEach(m => {
-  const card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `
-    <img src="${m.img}" alt="${m.name}">
-    <h3>${m.name}</h3>
-    <p><strong>Date:</strong> ${m.date}</p>
-    <p>${m.info}</p>
-  `;
-  missionsContainer.appendChild(card);
+  missionsContainer.innerHTML += `
+    <div class="card">
+      <img src="${m.img}" alt="${m.name}">
+      <h3>${m.name} (${m.year})</h3>
+      <p>${m.desc}</p>
+    </div>`;
 });
 
-// Fetch space news
-const newsContainer = document.getElementById("news-container");
+// ===== SPACE NEWS (API) =====
+async function loadNews() {
+  const res = await fetch("https://api.spaceflightnewsapi.net/v4/articles/?limit=5");
+  const data = await res.json();
+  const newsContainer = document.getElementById("news-container");
 
-async function fetchNews() {
-  try {
-    const res = await fetch(apiUrl);
-    const data = await res.json();
-
-    newsContainer.innerHTML = "";
-    data.results.forEach(article => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <img src="${article.image_url || 'images/fallback.jpg'}" alt="News Image">
+  data.results.forEach(article => {
+    newsContainer.innerHTML += `
+      <div class="card">
+        <img src="${article.image_url}" alt="News Image">
         <h3>${article.title}</h3>
-        <p>${article.summary}</p>
-        <a href="${article.url}" target="_blank">Read more →</a>
-      `;
-      newsContainer.appendChild(card);
-    });
-  } catch (err) {
-    newsContainer.innerHTML = "<p>⚠️ Failed to load space news.</p>";
-  }
-}
-
-fetchNews();
-
-// Sidebar search filter
-document.getElementById("search").addEventListener("input", e => {
-  const term = e.target.value.toLowerCase();
-  document.querySelectorAll(".card").forEach(card => {
-    card.style.display = card.innerText.toLowerCase().includes(term) ? "block" : "none";
+        <p>${article.published_at}</p>
+        <a href="${article.url}" target="_blank">Read More</a>
+      </div>`;
   });
-});
+}
+loadNews();
