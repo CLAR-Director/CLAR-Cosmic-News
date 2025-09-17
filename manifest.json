@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#0d1117",
   "theme_color": "#0d1117",
-  "description": "CLAR is a research platform to explore planets, rockets, telescopes, and the universe in a modern clean UI.",
+  "description": "CLAR delivers live space news and updates from across the cosmos.",
   "icons": [
     {
       "src": "icons/icon-192.png",
