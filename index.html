@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CLAR – Celestial Luminara Authority of Research & Advancement</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0d1117">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CLAR - Celestial Luminara Authority</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <aside class="sidebar">
-    <img src="images/clar-logo.png" alt="CLAR Logo" class="logo">
-    <input type="text" id="search" placeholder="Search...">
-    <nav>
-      <a href="#planets">🌍 Planets</a>
-      <a href="#missions">🚀 Missions</a>
-      <a href="#news">📰 News</a>
-    </nav>
-  </aside>
+  <div class="sidebar">
+    <img src="images/clar-logo.png" alt="CLAR Logo" class="logo"/>
+    <h2>CLAR</h2>
+    <input type="text" id="searchBar" placeholder="Search..."/>
+    <ul>
+      <li><a href="#planets">Planets</a></li>
+      <li><a href="#missions">Missions</a></li>
+      <li><a href="#news">News</a></li>
+    </ul>
+  </div>
 
-  <main class="content">
+  <div class="main-content">
+    <header>
+      <h1>Celestial Luminara Authority of Research & Advancement</h1>
+    </header>
+
     <section id="planets">
-      <h2>🌍 The Solar System</h2>
-      <div id="planets-container" class="grid"></div>
+      <h2>Solar System</h2>
+      <div class="planet-grid" id="planetGrid"></div>
     </section>
 
     <section id="missions">
-      <h2>🚀 Space Missions</h2>
-      <div id="missions-container" class="grid"></div>
+      <h2>Historic Missions</h2>
+      <div class="mission-grid" id="missionGrid"></div>
     </section>
 
     <section id="news">
-      <h2>📰 Latest Space News</h2>
-      <div id="news-container" class="grid"></div>
+      <h2>Latest Space News</h2>
+      <div id="newsContainer"></div>
     </section>
-  </main>
-
-  <footer>
-    <p>✨ CLAR – Celestial Luminara Authority of Research & Advancement</p>
-  </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
