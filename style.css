@@ -1,46 +1,41 @@
-/* Global */
+/* General layout */
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: #0d1117;
-  color: #e6edf3;
+  font-family: Arial, sans-serif;
+  background: #0a0f1e;
+  color: #f1f1f1;
+}
+
+.app-container {
   display: flex;
+  min-height: 100vh;
 }
 
 /* Sidebar */
 .sidebar {
   width: 250px;
-  background: #161b22;
+  background: #11172b;
   padding: 20px;
-  height: 100vh;
-  position: fixed;
-  left: 0;
-  top: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .logo {
-  width: 60px;
-  display: block;
-  margin: 0 auto;
-}
-
-.logo-section {
   text-align: center;
 }
-
-.sidebar h1 {
-  margin: 10px 0 0;
-  color: #58a6ff;
+.logo img {
+  width: 60px;
+}
+.logo h2 {
+  margin: 10px 0;
+  color: #00d9ff;
 }
 
 .sidebar input {
+  margin: 15px 0;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 5px;
   border: none;
-  font-size: 1em;
   width: 100%;
 }
 
@@ -48,54 +43,44 @@ body {
   list-style: none;
   padding: 0;
 }
-
 .sidebar nav ul li {
   margin: 15px 0;
 }
-
 .sidebar nav ul li a {
-  color: #c9d1d9;
+  color: #fff;
   text-decoration: none;
   font-size: 1.1em;
 }
 
-.sidebar nav ul li a:hover {
-  color: #58a6ff;
-}
-
 /* Main content */
 .content {
-  margin-left: 270px;
-  padding: 20px;
   flex: 1;
+  padding: 20px;
 }
 
-h2 {
-  color: #58a6ff;
-  margin-bottom: 15px;
+header {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-/* Grid layout */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
 
-/* Cards */
 .card {
-  background: #161b22;
-  border-radius: 12px;
+  background: #1a213a;
   padding: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  border-radius: 10px;
+  text-align: center;
   transition: transform 0.2s;
 }
-
 .card:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
-
 .card img {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
