@@ -3,24 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CLAR – Celestial Luminara Authority of Research & Advancement</title>
+  <title>CLAR – Space News</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- Manifest for PWA -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0d1117">
 </head>
 <body>
-  <h1>✨ CLAR</h1>
-  <h2>Celestial Luminara Authority of Research & Advancement</h2>
+  <header>
+    <h1>✨ CLAR</h1>
+    <h2>Celestial Luminara Authority of Research & Advancement</h2>
+    <input type="text" id="search" placeholder="Search space news...">
+  </header>
 
-  <!-- Search -->
-  <div class="search-container">
-    <input type="text" id="search" placeholder="Search for planets, rockets, telescopes...">
-  </div>
+  <main id="news-container">
+    <p>Loading the universe’s latest updates...</p>
+  </main>
 
-  <!-- Grid -->
-  <div class="grid" id="grid"></div>
+  <footer>
+    <p>Powered by CLAR | Live Space News</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
