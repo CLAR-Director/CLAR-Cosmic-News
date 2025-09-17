@@ -1,80 +1,64 @@
-/* Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-
 body {
-  background: linear-gradient(135deg, #0d1117, #1a1f29);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+  text-align: center;
+}
+
+header {
+  padding: 20px;
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
 }
 
 h1 {
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  font-weight: 700;
-  text-align: center;
+  font-size: 2.5em;
+  margin: 0;
+  color: #58a6ff;
 }
 
-/* Search Bar */
-.search-container {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 2rem;
+h2 {
+  font-size: 1em;
+  font-weight: normal;
+  margin: 5px 0 15px;
+  color: #8b949e;
 }
 
-.search-container input {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  border-radius: 12px;
+#search {
+  width: 70%;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 8px;
   border: none;
-  outline: none;
-  font-size: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  backdrop-filter: blur(8px);
+  font-size: 1em;
 }
 
-/* Grid */
-.grid {
+#news-container {
+  padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  width: 100%;
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
 }
 
-/* Cards */
-.card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-  backdrop-filter: blur(6px);
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.card img {
-  width: 100%;
-  max-height: 180px;
-  object-fit: contain;
+.news-card {
+  background: #161b22;
   border-radius: 12px;
-  margin-bottom: 1rem;
+  padding: 15px;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.2s;
 }
 
-.card h2 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+.news-card:hover {
+  transform: scale(1.03);
 }
 
-.card p {
-  font-size: 0.9rem;
-  opacity: 0.8;
+.news-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.news-card h3 {
+  color: #58a6ff;
 }
